@@ -355,6 +355,11 @@ export function deal() {
   gameState = tableJson;
 
   gameState.vul = vulArray[Math.floor(Math.random() * 3)];
+
+  // build stats for each hand
+  for (var x = 0; x < 4; x++) {
+    buildHandStats(gameState["hand" + x]);
+  }
 }
 
 // from 'build hand json'
@@ -363,7 +368,7 @@ export var bidNum = 0;
 export var bids = {};
 export var rebid = {};
 
-export function buildHand(hand) {
+export function buildHandStats(hand) {
   //hand = gameState.hand0;
   hand.numS = fn.suitCount(hand, "s");
   hand.numH = fn.suitCount(hand, "h");

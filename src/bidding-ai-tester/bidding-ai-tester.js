@@ -64,10 +64,10 @@ import ar2_oneLongSuit from "./bidding/acol-r2/ar2_oneLongSuit";
 
 import ao3_444 from "./bidding/acol-o3/ao3_444";
 
-let hand2;
+//let hand2;
 
 const BiddingAiTester = ({ sendData }) => {
-  let hand = {
+  /*let hand = {
     TP: "14",
     HCP: "12",
     numS: "",
@@ -75,53 +75,29 @@ const BiddingAiTester = ({ sendData }) => {
     numD: "4",
     numC: "4",
     opStrength: "min",
-  };
+  }; */
 
-  let bids = {
+  /*let bids = {
     level: "1",
     suit: "c",
     bidNum: 0,
     currentBid: "",
-  };
+  };*/
 
-  let bidArray = ["p"];
+  //let bidArray = ["p"];
 
-  let rebid = {};
+  //let rebid = {};
 
   let bidNum = 0;
 
   //const button = document.getElementById("deal-butt");
   let bidMatched = false;
   let bidCount = 0;
+  console.clear();
+  game.resetState();
+  game.deal();
 
-  //console.clear();
-  //game.resetState();
-  //game.deal();
-  dealAndBid();
-
-  function displayHands() {
-    let hands = ["hand0", "hand1", "hand2", "hand3"];
-    for (let x = 0; x < 4; x++) {
-      const cards = game.gameState[hands[x]].map((card, index) => {
-        // Find the index of card.suit in game.handCharArray
-        let suitIndex = game.handCharArray.indexOf(card.suit);
-
-        // Use the index to get the corresponding value from game.suitArray
-        let suitSymbol = game.suitSymbolArray[suitIndex];
-
-        return (
-          <Card
-            key={index}
-            value={game.valueSymbol[Number(card.val) - 2]}
-            suit={suitSymbol}
-          />
-        );
-      });
-
-      // Render the cards inside the div with the id of hand2
-      ReactDOM.render(cards, document.getElementById(hands[x]));
-    }
-  }
+  //dealAndBid();
 
   function handleClick(value) {}
 
@@ -130,9 +106,11 @@ const BiddingAiTester = ({ sendData }) => {
     bidCount = 0;
     // loop until bidding matches the criteria
     do {
-      //console.log("BID COUNT: " + bidCount);
-      dealAndBid();
+      console.clear();
+      game.resetState();
+      game.deal();
       displayHands();
+      bid();
       bidCount++;
     } while (
       bidMatched === false &&
@@ -143,39 +121,15 @@ const BiddingAiTester = ({ sendData }) => {
     //console.log("BID: " + game.gameState.currentBid);
   }
 
-  function dealAndBid() {
-    console.clear();
-    game.resetState();
-    game.deal();
-    //console.log(game.gameState);
-    bidNum = 0;
+  function bid() {
+    //bidNum = 0;
 
     //clear bidding table
-    for (var x = 0; x < 21; x++) {
-      bids[x] = "f";
-      ///$("#bid" + x).text("");
-    }
+    //for (var x = 0; x < 21; x++) {
+    //  bids[x] = "f";
+    ///$("#bid" + x).text("");
+    //}
 
-    for (var x = 0; x < 4; x++) {
-      game.buildHand(game.gameState["hand" + x]);
-    }
-
-    //console.log(game.gameState);
-    //document.getElementById("h0-o1bid").innerHTML = "";
-    //document.getElementById("h0-o2bid").innerHTML = "";
-
-    console.log(
-      "HCP: " +
-        game.gameState["hand0"].HCP +
-        "    TP: " +
-        game.gameState["hand0"].TPLong +
-        "    balanced: " +
-        game.gameState["hand0"].balanced +
-        "    opStrength: " +
-        game.gameState["hand0"].opStrength +
-        "    HCPinEverySuit: " +
-        game.gameState["hand0"].hcpInEverySuit
-    );
     var handNum = 0;
 
     doBid("ao1_54", ao1_54(game.gameState["hand0"]), handNum);
@@ -211,105 +165,101 @@ const BiddingAiTester = ({ sendData }) => {
     }
 
     // remove bids lower thatn the current bid
-    if (possibleBids != "" && possibleBids != null) {
+    if (possibleBids.length > 0 && possibleBids != null) {
       possibleBids = removeToLowBids(possibleBids);
     }
 
     // sort by descending weight
-    if (possibleBids != "" && possibleBids !== null) {
+    if (possibleBids.length > 0 && possibleBids !== null) {
       possibleBids.sort((a, b) => b - a);
 
+      // r1 --------------
       if (possibleBids[0].bidder === "r1") {
         game.gameState.r1Bid = possibleBids[0].r1Bid;
         game.gameState.currentBid = possibleBids[0].r1Bid;
         ///document.getElementById("h" + handNum + "-r1bid").innerHTML =
-        /*
+
         console.log(
-          "<span style='color: green; font-weight: bold;'>" +
-            possibleBids[0].r1Bid +
-            "</span> &nbsp;&nbsp;&nbsp;  HCP: " +
+          possibleBids[0].r1Bid +
+            "    HCP: " +
             game.gameState["hand" + handNum].HCP +
-            "&nbsp;&nbsp;&nbsp;  TP: " +
+            "    TP: " +
             game.gameState["hand" + handNum].TPLong +
-            "&nbsp;&nbsp;&nbsp; bal: " +
+            "    bal: " +
             game.gameState["hand" + handNum].balanced +
-            "&nbsp;&nbsp;&nbsp; reS: " +
+            "    reS: " +
             game.gameState["hand" + handNum].reStrength +
-            "&nbsp;&nbsp;&nbsp; HCPinES: " +
+            "    HCPinES: " +
             game.gameState["hand" + handNum].hcpInEverySuit
-        );*/
+        );
       }
+      //r2-------------------
       if (possibleBids[0].bidder === "r2") {
         game.gameState.r2Bid = possibleBids[0].r2Bid;
         game.gameState.currentBid = possibleBids[0].r2Bid;
-        /*console.log(
-          (document.getElementById("h" + handNum + "-r2bid").innerHTML =
-            "<span style='color: green; font-weight: bold;'>" +
-            possibleBids[0].r2Bid +
-            "</span> &nbsp;&nbsp;&nbsp;  HCP: " +
+        console.log(
+          possibleBids[0].r2Bid +
+            "    HCP: " +
             game.gameState["hand" + handNum].HCP +
-            "&nbsp;&nbsp;&nbsp;  TP: " +
+            "    TP: " +
             game.gameState["hand" + handNum].TPLong +
-            "&nbsp;&nbsp;&nbsp; bal: " +
+            "    bal: " +
             game.gameState["hand" + handNum].balanced +
-            "&nbsp;&nbsp;&nbsp; reS: " +
+            "    reS: " +
             game.gameState["hand" + handNum].reStrength +
-            "&nbsp;&nbsp;&nbsp; HCPinES: " +
-            game.gameState["hand" + handNum].hcpInEverySuit)
-        );*/
+            "    HCPinES: " +
+            game.gameState["hand" + handNum].hcpInEverySuit
+        );
       }
 
+      //o1-------------------
       if (possibleBids[0].bidder === "o1") {
         if (possibleBids[0].o1bid === undefined) {
           game.gameState.o1Bid = possibleBids[0].o1Bid;
           game.gameState.currentBid = possibleBids[0].o1Bid;
-          ///document.getElementById("h" + handNum + "-o1bid").innerHTML =
-          /*console.log(
-            "<span style='color: green; font-weight: bold;'>" +
-              possibleBids[0].o1Bid +
-              "</span>  &nbsp;&nbsp;&nbsp; HCP: " +
+
+          console.log(
+            possibleBids[0].o1Bid +
+              "   HCP: " +
               game.gameState["hand" + handNum].HCP +
-              "&nbsp;&nbsp;&nbsp; TP: " +
+              "   TP: " +
               game.gameState["hand" + handNum].TPLong +
-              "&nbsp;&nbsp;&nbsp; bal: " +
+              "   bal: " +
               game.gameState["hand" + handNum].balanced +
-              "&nbsp;&nbsp;&nbsp; opS: " +
+              "   opS: " +
               game.gameState["hand" + handNum].opStrength +
-              "&nbsp;&nbsp;&nbsp; HCPinES: " +
+              "   HCPinES: " +
               game.gameState["hand" + handNum].hcpInEverySuit
-          );*/
+          );
         }
       }
 
+      //o2-------------------
       if (possibleBids[0].bidder === "o2") {
         if (possibleBids[0].o2bid === undefined) {
           game.gameState.o2Bid = possibleBids[0].o2Bid;
           game.gameState.currentBid = possibleBids[0].o2Bid;
-          ///document.getElementById("h" + handNum + "-o2bid").innerHTML =
-          /*console.log(
+
+          console.log(
             possibleBids[0].o2Bid +
-              "  &nbsp;&nbsp;&nbsp; HCP: " +
+              "    HCP: " +
               game.gameState["hand" + handNum].HCP +
-              "&nbsp;&nbsp;&nbsp; TP: " +
+              "    TP: " +
               game.gameState["hand" + handNum].TPLong +
-              "&nbsp;&nbsp;&nbsp; bal: " +
+              "    bal: " +
               game.gameState["hand" + handNum].balanced +
-              "&nbsp;&nbsp;&nbsp; opS: " +
+              "    opS: " +
               game.gameState["hand" + handNum].opStrength +
-              "&nbsp;&nbsp;&nbsp; HCPinES: " +
+              "    HCPinES: " +
               game.gameState["hand" + handNum].hcpInEverySuit
-          );*/
+          );
         }
       }
 
       if (possibleBids[0].bidder === "o3") {
         game.gameState.o3Bid = possibleBids[0].o3Bid;
         game.gameState.currentBid = possibleBids[0].o3Bid;
-        ///document.getElementById("h" + handNum + "-o3bid").innerHTML =
-        /*console.log(
-          "<span style='color: green; font-weight: bold;'>" +
-            possibleBids[0].o3Bid
-        );*/
+        console.log("   o3 Bid: " + possibleBids[0].o3Bid);
       }
 
       console.log("BID SHEET " + bidName + " " + handNum);
@@ -344,9 +294,31 @@ const BiddingAiTester = ({ sendData }) => {
     return possibleBids;
   }
 
+  function displayHands() {
+    let hands = ["hand0", "hand1", "hand2", "hand3"];
+    for (let x = 0; x < 4; x++) {
+      const cards = game.gameState[hands[x]].map((card, index) => {
+        // Find the index of card.suit in game.handCharArray
+        let suitIndex = game.handCharArray.indexOf(card.suit);
+
+        // Use the index to get the corresponding value from game.suitArray
+        let suitSymbol = game.suitSymbolArray[suitIndex];
+
+        return (
+          <Card
+            key={index}
+            value={game.valueSymbol[Number(card.val) - 2]}
+            suit={suitSymbol}
+          />
+        );
+      });
+
+      // Render the cards inside the div with the id of hand2
+      ReactDOM.render(cards, document.getElementById(hands[x]));
+    }
+  }
+
   if (game.gameState) {
-    //console.log("game.gameState");
-    //console.log(game.gameState);
     return (
       <div className="BiddingAiTester">
         <div id="bidpad">
@@ -359,10 +331,10 @@ const BiddingAiTester = ({ sendData }) => {
                 <th>3</th>
               </tr>
               <tr>
-                <td id="bid0">{game.gameState.o1Bid}</td>
-                <td id="bid1">{bids[1]}</td>
-                <td id="bid2">{bids[2]}</td>
-                <td id="bid3">{bids[3]}</td>
+                <td id="bid0"></td>
+                <td id="bid1"></td>
+                <td id="bid2"></td>
+                <td id="bid3"></td>
               </tr>
               <tr>
                 <td id="bid4"></td>
