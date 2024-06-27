@@ -31,4 +31,10 @@
 
 #hand2 > div, #hand3 > div, #hand1 > div, #hand0 > div {
   display: inline-block;
+  max-height: 65px;
+}
+
+#deal-butt {
+  margin-top: 30px;
+  font-size: 1.5rem;
 }
