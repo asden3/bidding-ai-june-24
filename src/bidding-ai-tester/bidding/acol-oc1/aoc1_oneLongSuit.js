@@ -1,4 +1,4 @@
-function get_aoc1_oneLongSuit(hand) {
+export default function (hand) {
   var oc1_oneLongSuit = [
     {
       bidder: "oc1",

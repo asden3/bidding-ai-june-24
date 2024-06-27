@@ -1,4 +1,4 @@
-function get_ao1_75(hand) {
+export default function (hand) {
   var ao1_75 = [
     {
       bidder: "oc1",

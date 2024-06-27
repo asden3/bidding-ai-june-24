@@ -16,6 +16,19 @@ import ao1_opening3Level from "../bidding/acol-o1/ao1_opening3";
 import ao1_openingGame from "../bidding/acol-o1/ao1_openingGame";
 //import ao1_threeLevelOpening from './bidding/acol-o1/ao1_threeLevelOpening';
 
+import aoc1_7 from "../bidding/acol-oc1/aoc1_7";
+import aoc1_8 from "../bidding/acol-oc1/aoc1_8";
+import aoc1_54 from "../bidding/acol-oc1/aoc1_54";
+import aoc1_55 from "../bidding/acol-oc1/aoc1_55";
+import aoc1_65 from "../bidding/acol-oc1/aoc1_65";
+import aoc1_66 from "../bidding/acol-oc1/aoc1_66";
+import aoc1_74 from "../bidding/acol-oc1/aoc1_74";
+import aoc1_75 from "../bidding/acol-oc1/aoc1_75";
+//import aoc1_76 from "../bidding/acol-oc1/aoc1_76";
+import aoc1_noTrump from "../bidding/acol-oc1/aoc1_noTrump";
+import aoc1_oneLongSuit from "../bidding/acol-oc1/aoc1_oneLongSuit";
+import aoc1_unusual2NT from "../bidding/acol-oc1/aoc1_unusual2NT";
+
 import ar1_oneLongSuit from "../bidding/acol-r1/ar1_oneLongSuit";
 import ar1_44 from "../bidding/acol-r1/ar1_44";
 import ar1_54 from "../bidding/acol-r1/ar1_54";
@@ -76,20 +89,34 @@ export const ao1Bids = [
   { name: "ao1_openingGame", func: ao1_openingGame },
 ];
 
+export const aoc1Bids = [
+  { name: "aoc1_7", func: aoc1_7 },
+  { name: "aoc1_8", func: aoc1_8 },
+  { name: "aoc1_54", func: aoc1_54 },
+  { name: "aoc1_55", func: aoc1_55 },
+  { name: "aoc1_65", func: aoc1_65 },
+  { name: "aoc1_66", func: aoc1_66 },
+  { name: "aoc1_74", func: aoc1_74 },
+  { name: "aoc1_75", func: aoc1_75 },
+  { name: "aoc1_75", func: aoc1_75 },
+  { name: "aoc1_noTrump", func: aoc1_noTrump },
+  { name: "aoc1_oneLongSuit", func: aoc1_oneLongSuit },
+  { name: "aoc1_unusual2NT", func: aoc1_unusual2NT },
+];
+
 export const ar1Bids = [
-  { name: "ar1_54", func: ao1_54 },
-  { name: "ar1_544", func: ao1_544 },
-  { name: "ar1_55", func: ao1_55 },
-  { name: "ar1_44", func: ao1_44 },
-  { name: "ar1_74", func: ao1_74 },
-  { name: "ar1_75", func: ao1_75 },
-  { name: "ar1_76", func: ao1_76 },
-  { name: "ar1_84", func: ao1_84 },
-  { name: "ar1_85", func: ao1_85 },
-  { name: "ar1_444", func: ao1_444 },
-  { name: "ar1_oneLongSuit", func: ao1_oneLongSuit },
-  { name: "ar1_64", func: ao1_64 },
-  { name: "ar1_65", func: ao1_65 },
-  { name: "ar1_66", func: ao1_66 },
+  { name: "ar1_54", func: ar1_54 },
+  { name: "ar1_544", func: ar1_544 },
+  { name: "ar1_55", func: ar1_55 },
+  { name: "ar1_44", func: ar1_44 },
+  { name: "ar1_74", func: ar1_74 },
+  { name: "ar1_75", func: ar1_75 },
+  { name: "ar1_76", func: ar1_76 },
+  { name: "ar1_84", func: ar1_84 },
+  { name: "ar1_444", func: ar1_444 },
+  { name: "ar1_oneLongSuit", func: ar1_oneLongSuit },
+  { name: "ar1_64", func: ar1_64 },
+  { name: "ar1_65", func: ar1_65 },
+  { name: "ar1_66", func: ar1_66 },
   { name: "ar1_respondingTo1NT", func: ar1_respondingTo1NT },
 ];

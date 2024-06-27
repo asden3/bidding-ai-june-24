@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as game from "./core";
-import { ao1Bids } from "./bidding/biddingStrategies";
+import { ao1Bids, aoc1Bids, ar1Bids } from "./bidding/biddingStrategies";
 import { resetAndDealGame, removeToLowBids } from "./bidding/biddingUtils";
 import * as bidIndex from "./bidIndex";
 import Card from "../components/Card";
@@ -25,8 +25,9 @@ const BiddingAiTester = ({ sendData }) => {
   function dealClick(value) {
     bidMatched = false;
     bidCount = 0;
+
     do {
-      console.clear();
+      //console.clear();
       resetAndDealGame();
       displayHands();
       bid();
@@ -40,12 +41,16 @@ const BiddingAiTester = ({ sendData }) => {
   }
 
   function bid() {
-    executeBids(0);
-    //executeBids(0);
+    executeBids(0, ao1Bids);
+    //console.log("ao1: ", ao1Bids);
+    //console.log("ar1: ", ao1Bids);
+    //console.log("aoc1: ", aoc1Bids);
+    executeBids(2, ar1Bids);
+    //executeBids(1, aoc1Bids);
   }
 
-  function executeBids(handNum) {
-    for (let bid of ao1Bids) {
+  function executeBids(handNum, potentialBids) {
+    for (let bid of potentialBids) {
       doBid(bid.name, bid.func(game.gameState[`hand${handNum}`]), handNum);
     }
   }
@@ -54,11 +59,11 @@ const BiddingAiTester = ({ sendData }) => {
     if (possibleBids.length > 0) {
       possibleBids = removeToLowBids(possibleBids);
       possibleBids.sort((a, b) => b - a);
-
       switch (possibleBids[0].bidder) {
         case "r1":
           game.gameState.r1Bid = possibleBids[0].r1Bid;
           game.gameState.currentBid = possibleBids[0].r1Bid;
+          console.log("R1Bid!!!");
           displayStats(possibleBids[0].r1Bid, handNum);
           break;
         case "r2":
@@ -71,6 +76,13 @@ const BiddingAiTester = ({ sendData }) => {
             game.gameState.o1Bid = possibleBids[0].o1Bid;
             game.gameState.currentBid = possibleBids[0].o1Bid;
             displayStats(possibleBids[0].o1Bid, handNum);
+          }
+          break;
+        case "oc":
+          if (possibleBids[0].ocbid === undefined) {
+            game.gameState.ocBid = possibleBids[0].ocBid;
+            game.gameState.currentBid = possibleBids[0].ocBid;
+            displayStats(possibleBids[0].ocBid, handNum);
           }
           break;
         case "o2":
@@ -89,6 +101,8 @@ const BiddingAiTester = ({ sendData }) => {
           break;
       }
     }
+    //console.log(possibleBids[0].bidder);
+    console.log(game.gameState);
   }
 
   function displayStats(bid, handNum) {

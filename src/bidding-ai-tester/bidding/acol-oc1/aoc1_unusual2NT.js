@@ -1,4 +1,4 @@
-function get_aoc1_unusual2NT(hand) {
+export default function (hand) {
   var oc1_unusual2NT = [
     {
       bidder: "oc1",

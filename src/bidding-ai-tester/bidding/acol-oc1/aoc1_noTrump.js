@@ -1,4 +1,4 @@
-function get_aoc1_noTrump(hand) {
+export default function (hand) {
   var oc1_noTrump = [
     {
       bidder: "oc1",
