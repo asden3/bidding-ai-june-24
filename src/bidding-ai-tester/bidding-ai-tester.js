@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as game from "./core";
-import { ao1Bids, aoc1Bids, ar1Bids } from "./bidding/biddingStrategies";
+import { ao1Bids, ar1Bids } from "./bidding/biddingStrategies";
 import { resetAndDealGame, removeToLowBids } from "./bidding/biddingUtils";
 import * as bidIndex from "./bidIndex";
 import Card from "../components/Card";
