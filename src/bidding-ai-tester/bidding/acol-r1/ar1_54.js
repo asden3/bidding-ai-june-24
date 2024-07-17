@@ -1,5 +1,5 @@
 export default function (hand, o1Bid) {
-  console.log("R1 54");
+  //console.log("R1 54");
   //console.table(hand);
   var fiveCard4Card = [
     {

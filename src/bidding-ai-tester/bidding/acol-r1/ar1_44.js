@@ -1,5 +1,5 @@
 export default function (hand, o1Bid) {
-  console.log("R1 44", hand, o1Bid);
+  //console.log("R1 44", hand, o1Bid);
   var fourCard4Card = [
     {
       bidder: "r1",

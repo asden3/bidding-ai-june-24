@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as game from "./core";
-import { ao1Bids, ar1Bids } from "./bidding/biddingStrategies";
-import { resetAndDealGame, removeToLowBids } from "./bidding/biddingUtils";
+import { ao1Bids, aoc1Bids, ar1Bids } from "./bidding/biddingStrategies";
+import { resetAndDealGame, removeTooLowBids } from "./bidding/biddingUtils";
 import * as bidIndex from "./bidIndex";
 import Card from "../components/Card";
 // import reactDOM
@@ -16,28 +16,28 @@ const BiddingAiTester = ({ sendData }) => {
   //}, [bidResult]); // The effect runs whenever bidResult changes
 
   let bidMatched = false;
-  let bidCount = 0;
+  let bidAttemptCount = 0;
   //console.clear();
   resetAndDealGame();
 
   function handleClick(value) {}
 
   function dealClick(value) {
+    console.clear();
     bidMatched = false;
-    bidCount = 0;
+    bidAttemptCount = 0;
+    resetAndDealGame();
+    displayHands();
 
     do {
-      //console.clear();
-      resetAndDealGame();
-      displayHands();
       bid();
-      bidCount++;
+      bidAttemptCount++;
     } while (
       !bidMatched &&
-      bidCount < 100 &&
+      bidAttemptCount < 100 &&
       game.gameState.currentBid === undefined
     );
-    console.log("BID COUNT: " + bidCount);
+    //console.log("BID COUNT: " + bidAttemptCount);
   }
 
   function bid() {
@@ -45,25 +45,36 @@ const BiddingAiTester = ({ sendData }) => {
     //console.log("ao1: ", ao1Bids);
     //console.log("ar1: ", ao1Bids);
     //console.log("aoc1: ", aoc1Bids);
+    executeBids(1, aoc1Bids);
     executeBids(2, ar1Bids);
+    //executeBids(2, aopcBids);
+    //executeBids(2, ar1Bids);
     //executeBids(1, aoc1Bids);
   }
 
   function executeBids(handNum, potentialBids) {
+    //console.log("HandNum: ", handNum);
+    //console.log("PPP: ", potentialBids);
     for (let bid of potentialBids) {
-      doBid(bid.name, bid.func(game.gameState[`hand${handNum}`]), handNum);
+      // call the json function to return possible bids
+      var possibleBids = bid.func(game.gameState[`hand${handNum}`]);
+      //console.log("Possible Bids: ", bid, possibleBids);
+      doBid(bid.name, possibleBids, handNum);
     }
   }
 
   function doBid(bidName, possibleBids, handNum) {
     if (possibleBids.length > 0) {
-      possibleBids = removeToLowBids(possibleBids);
+      //console.log("All Possible Bids: ", possibleBids);
+      possibleBids = removeTooLowBids(possibleBids);
+      //console.log("Valid possible Bids: ", possibleBids);
       possibleBids.sort((a, b) => b - a);
+      // choose the highest ranked bid
       switch (possibleBids[0].bidder) {
         case "r1":
           game.gameState.r1Bid = possibleBids[0].r1Bid;
           game.gameState.currentBid = possibleBids[0].r1Bid;
-          console.log("R1Bid!!!");
+          console.log("r1Bid: ", game.gameState.currentBid);
           displayStats(possibleBids[0].r1Bid, handNum);
           break;
         case "r2":
@@ -75,13 +86,15 @@ const BiddingAiTester = ({ sendData }) => {
           if (possibleBids[0].o1bid === undefined) {
             game.gameState.o1Bid = possibleBids[0].o1Bid;
             game.gameState.currentBid = possibleBids[0].o1Bid;
+            console.log("o1Bid: ", game.gameState.currentBid);
             displayStats(possibleBids[0].o1Bid, handNum);
           }
           break;
-        case "oc":
+        case "oc1":
           if (possibleBids[0].ocbid === undefined) {
             game.gameState.ocBid = possibleBids[0].ocBid;
             game.gameState.currentBid = possibleBids[0].ocBid;
+            console.log("ocBid: ", game.gameState.currentBid);
             displayStats(possibleBids[0].ocBid, handNum);
           }
           break;
@@ -102,7 +115,8 @@ const BiddingAiTester = ({ sendData }) => {
       }
     }
     //console.log(possibleBids[0].bidder);
-    console.log(game.gameState);
+    //console.log(game.gameState);
+    //console.log("Current Bid", game.gameState.currentBid);
   }
 
   function displayStats(bid, handNum) {

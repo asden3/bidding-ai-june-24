@@ -5,7 +5,7 @@ export function resetAndDealGame() {
   game.deal();
 }
 
-export function removeToLowBids(possibleBids) {
+export function removeTooLowBids(possibleBids) {
   const currentBidRank = game.bidRank.indexOf(game.gameState.currentBid);
   return possibleBids.filter((bid) => {
     const bidderKey = `${bid.bidder}Bid`;
