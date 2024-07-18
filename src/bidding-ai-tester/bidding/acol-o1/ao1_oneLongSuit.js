@@ -1,4 +1,5 @@
 export default function (hand) {
+  console.log("HAND STATS: ", hand);
   var oneLongSuit = [
     {
       bidder: "o1",

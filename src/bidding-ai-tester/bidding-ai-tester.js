@@ -31,13 +31,13 @@ const BiddingAiTester = ({ sendData }) => {
       resetAndDealGame();
       displayHands();
       bid();
-      //executeBids(1, aoc1Bids);
-      //executeBids(2, ar1Bids);
+      executeBids(1, aoc1Bids);
+      executeBids(2, ar1Bids);
       bidAttemptCount++;
       console.log(bidAttemptCount);
     } while (
       !bidMatched &&
-      bidAttemptCount < 10 &&
+      bidAttemptCount < 1 &&
       game.gameState.currentBid === undefined
       //game.gameState.r1Bid === undefined
     );
@@ -57,7 +57,10 @@ const BiddingAiTester = ({ sendData }) => {
     for (let bid of potentialBids) {
       //console.log("BID: ", bid);
       // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
-      var possibleBids = bid.func(game.gameState[`hand${handNum}`]);
+      var possibleBids = bid.func(
+        game.gameState[`hand${handNum}`],
+        game.gameState.o1Bid
+      );
       //console.log("Possible Bids: ", bid, possibleBids);
       doBid(bid.name, possibleBids, handNum);
     }
@@ -76,7 +79,6 @@ const BiddingAiTester = ({ sendData }) => {
           //if bid is r1 (Responder 1) set r1 bid and current bid
           game.gameState.r1Bid = possibleBids[0].r1Bid;
           game.gameState.currentBid = possibleBids[0].r1Bid;
-          console.log("r1Bid: ", game.gameState.currentBid);
           displayStats(possibleBids[0].r1Bid, handNum);
           break;
         case "r2":
@@ -115,6 +117,12 @@ const BiddingAiTester = ({ sendData }) => {
         default:
           break;
       }
+      console.log(
+        "Bids: ",
+        game.gameState.o1Bid,
+        game.gameState.ocBid,
+        game.gameState.r1Bid
+      );
     }
     //console.log(possibleBids[0].bidder);
     //console.log(game.gameState);
