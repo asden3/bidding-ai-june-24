@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as game from "./core";
-import { ao1Bids, aoc1Bids, ar1Bids } from "./bidding/biddingStrategies";
+import {
+  ao1Bids,
+  aoc1Bids,
+  ar1Bids,
+  ao2Bids,
+  ar2Bids,
+} from "./bidding/biddingStrategies";
 import { resetAndDealGame, removeTooLowBids } from "./bidding/biddingUtils";
 import * as bidIndex from "./bidIndex";
 import Card from "../components/Card";
@@ -33,6 +39,8 @@ const BiddingAiTester = ({ sendData }) => {
       bid();
       executeBids(1, aoc1Bids);
       executeBids(2, ar1Bids);
+      executeBids(0, ao2Bids);
+      //executeBids(2, ar2Bids);
       bidAttemptCount++;
       console.log(bidAttemptCount);
     } while (
@@ -59,7 +67,10 @@ const BiddingAiTester = ({ sendData }) => {
       // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
       var possibleBids = bid.func(
         game.gameState[`hand${handNum}`],
-        game.gameState.o1Bid
+        game.gameState.o1Bid,
+        game.gameState.r1Bid,
+        game.gameState.o2Bid,
+        game.gameState.r2Bid
       );
       //console.log("Possible Bids: ", bid, possibleBids);
       doBid(bid.name, possibleBids, handNum);
@@ -121,7 +132,8 @@ const BiddingAiTester = ({ sendData }) => {
         "Bids: ",
         game.gameState.o1Bid,
         game.gameState.ocBid,
-        game.gameState.r1Bid
+        game.gameState.r1Bid,
+        game.gameState.o2Bid
       );
     }
     //console.log(possibleBids[0].bidder);
@@ -130,17 +142,40 @@ const BiddingAiTester = ({ sendData }) => {
   }
 
   function displayStats(bid, handNum) {
-    setBidResult(
-      `Bid: ${bid}......HCP: ${
+    let bidResults = `<b>BIDS</b><br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${game.gameState.oc1Bid}<br \>Responder: ${game.gameState.r1Bid}  <br \>Opener 2: ${game.gameState.o2Bid}<br\>Responder 2: ${game.gameState.r2Bid}<br\><br\>`;
+    /*
+    for (let i = 0; i < 4; i++) {
+      bidResults += `<br \><br \><b>HAND ${i}</b><br \>HCP: ${
         game.gameState[`hand${handNum}`].HCP
-      }......TotalPoints: ${
+      }<br /> TotalPoints: ${
+        game.gameState[`hand${i}`].TPLong
+      }<br /> Balanced: ${game.gameState[`hand${i}`].balanced}<br /> reS: ${
+        game.gameState[`hand${i}`].reStrength
+      }<br /> opS: ${
+        game.gameState[`hand${i}`].opStrength
+      }<br /> HCPinEverySuit: ${game.gameState[`hand${i}`].hcpInEverySuit}`;
+    }
+*/
+    setBidResult(bidResults);
+    /*
+      `<b>BIDS</b><br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${
+        game.gameState.oc1Bid
+      }<br \>Responder: ${game.gameState.r1Bid}  <br \>Opener 2: ${
+        game.gameState.o2Bid
+      }<br\><br\><b>HAND NUMBER ${handNum} STATS</b><br \>Opener Bid: ${
+        game.gameState.o1Bid
+      }<br /> HCP: ${game.gameState[`hand${handNum}`].HCP}<br /> TotalPoints: ${
         game.gameState[`hand${handNum}`].TPLong
-      }......Balanced: ${game.gameState[`hand${handNum}`].balanced}......reS: ${
-        game.gameState[`hand${handNum}`].reStrength
-      }......opS: ${
+      }<br /> Balanced: ${
+        game.gameState[`hand${handNum}`].balanced
+      }<br /> reS: ${game.gameState[`hand${handNum}`].reStrength}<br /> opS: ${
         game.gameState[`hand${handNum}`].opStrength
-      }......HCPinEverySuit: ${game.gameState[`hand${handNum}`].hcpInEverySuit}`
-    );
+      }<br /> HCPinEverySuit: ${
+        game.gameState[`hand${handNum}`].hcpInEverySuit
+      }<br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${
+        game.gameState.oc1Bid
+      }<br \>Responder: ${game.gameState.r1Bid}  `
+    );*/
   }
 
   function displayHands() {
@@ -619,10 +654,13 @@ const BiddingAiTester = ({ sendData }) => {
             ))}
           </div>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: bidResult }} />
         <button id="deal-butt" onClick={() => dealClick("Your Value")}>
           DEAL
         </button>
+        <div
+          style={{ paddingLeft: "30px", textAlign: "left" }}
+          dangerouslySetInnerHTML={{ __html: bidResult }}
+        />
       </div>
     );
   } else {

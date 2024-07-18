@@ -120,3 +120,31 @@ export const ar1Bids = [
   { name: "ar1_66", func: ar1_66 },
   { name: "ar1_respondingTo1NT", func: ar1_respondingTo1NT },
 ];
+
+export const ao2Bids = [
+  { name: "ao2_44", func: ao2_44 },
+  { name: "ao2_54", func: ao2_54 },
+  { name: "ao2_55", func: ao2_55 },
+  { name: "ao2_64", func: ao2_64 },
+  { name: "ao2_65", func: ao2_65 },
+  { name: "ao2_66", func: ao2_66 },
+  { name: "ao2_74", func: ao2_74 },
+  { name: "ao2_75", func: ao2_75 },
+  { name: "ao2_76", func: ao2_76 },
+  { name: "ao2_84", func: ao2_84 },
+  { name: "ao2_85", func: ao2_85 },
+  { name: "ao2_444", func: ao2_444 },
+  { name: "ao2_544", func: ao2_544 },
+  { name: "ao2_oneLongSuit", func: ao2_oneLongSuit },
+];
+
+export const ar2Bids = [
+  { name: "ar2_5Plus5Plus", func: ar2_5Plus5Plus },
+  { name: "ar2_6Plus4Plus", func: ar2_6Plus4Plus },
+  { name: "ar2_44", func: ar2_44 },
+  { name: "ar2_54", func: ar2_54 },
+  { name: "ar2_444", func: ar2_444 },
+  { name: "ar2_544", func: ar2_544 },
+  { name: "ar2_oneLongSuit", func: ar2_oneLongSuit },
+  { name: "ar2_suitPreference", func: ar2_suitPreference },
+];
