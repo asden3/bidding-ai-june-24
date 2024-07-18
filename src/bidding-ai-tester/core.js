@@ -212,146 +212,498 @@ export function deal() {
   }
 
   tableJson["hand0"] = sortJSON(tableJson["hand0"], "deckval", "321"); // 123 or 321
+  console.log(tableJson["hand0"]);
   tableJson["hand1"] = sortJSON(tableJson["hand1"], "deckval", "321"); // 123 or 321
   tableJson["hand2"] = sortJSON(tableJson["hand2"], "deckval", "321"); // 123 or 321
   tableJson["hand3"] = sortJSON(tableJson["hand3"], "deckval", "321"); // 123 or 321
-  /*
-        // FIXED HAND
-        tableJson.hand2 = [{
-            val: "11",
-            suit: "s",
-            vis: "0",
-            deckval: 50
-        }, {
-            val: "9",
-            suit: "s",
-            vis: "0",
-            deckval: 48
-        }, {
-            val: "7",
-            suit: "s",
-            vis: "0",
-            deckval: 46
-        }, {
-            val: "5",
-            suit: "s",
-            vis: "0",
-            deckval: 44
-        }, {
-            val: "4",
-            suit: "s",
-            vis: "0",
-            deckval: 43
-        }, {
-            val: "11",
-            suit: "d",
-            vis: "0",
-            deckval: 24
-        }, {
-            val: "7",
-            suit: "d",
-            vis: "0",
-            deckval: 20
-        }, {
-            val: "14",
-            suit: "c",
-            vis: "0",
-            deckval: 14
-        }, {
-            val: "12",
-            suit: "c",
-            vis: "0",
-            deckval: 12
-        }, {
-            val: "8",
-            suit: "c",
-            vis: "0",
-            deckval: 8
-        }, {
-            val: "5",
-            suit: "c",
-            vis: "0",
-            deckval: 5
-        }, {
-            val: "4",
-            suit: "c",
-            vis: "0",
-            deckval: 4
-        }, {
-            val: "2",
-            suit: "c",
-            vis: "0",
-            deckval: 2
-        }];
-        tableJson.hand0 = [{
-            val: "13",
-            suit: "s",
-            vis: "0",
-            deckval: 52
-        }, {
-            val: "12",
-            suit: "s",
-            vis: "0",
-            deckval: 51
-        }, {
-            val: "8",
-            suit: "s",
-            vis: "0",
-            deckval: 47
-        }, {
-            val: "7",
-            suit: "h",
-            vis: "0",
-            deckval: 33
-        }, {
-            val: "5",
-            suit: "h",
-            vis: "0",
-            deckval: 31
-        }, {
-            val: "4",
-            suit: "h",
-            vis: "0",
-            deckval: 30
-        }, {
-            val: "14",
-            suit: "d",
-            vis: "0",
-            deckval: 27
-        }, {
-            val: "13",
-            suit: "d",
-            vis: "0",
-            deckval: 26
-        }, {
-            val: "9",
-            suit: "d",
-            vis: "0",
-            deckval: 22
-        }, {
-            val: "3",
-            suit: "d",
-            vis: "0",
-            deckval: 16
-        }, {
-            val: "2",
-            suit: "d",
-            vis: "0",
-            deckval: 15
-        }, {
-            val: "9",
-            suit: "c",
-            vis: "0",
-            deckval: 9
-        }, {
-            val: "3",
-            suit: "c",
-            vis: "0",
-            deckval: 3
-        }];
 
-        //END STATIC HAND
-    */
+  // FIXED HAND
+  /*
+  tableJson.hand2 = [
+    {
+      val: "11",
+      suit: "s",
+      vis: "0",
+      deckval: 50,
+    },
+    {
+      val: "9",
+      suit: "s",
+      vis: "0",
+      deckval: 48,
+    },
+    {
+      val: "7",
+      suit: "s",
+      vis: "0",
+      deckval: 46,
+    },
+    {
+      val: "5",
+      suit: "s",
+      vis: "0",
+      deckval: 44,
+    },
+    {
+      val: "4",
+      suit: "s",
+      vis: "0",
+      deckval: 43,
+    },
+    {
+      val: "11",
+      suit: "d",
+      vis: "0",
+      deckval: 24,
+    },
+    {
+      val: "7",
+      suit: "d",
+      vis: "0",
+      deckval: 20,
+    },
+    {
+      val: "14",
+      suit: "c",
+      vis: "0",
+      deckval: 14,
+    },
+    {
+      val: "12",
+      suit: "c",
+      vis: "0",
+      deckval: 12,
+    },
+    {
+      val: "8",
+      suit: "c",
+      vis: "0",
+      deckval: 8,
+    },
+    {
+      val: "5",
+      suit: "c",
+      vis: "0",
+      deckval: 5,
+    },
+    {
+      val: "4",
+      suit: "c",
+      vis: "0",
+      deckval: 4,
+    },
+    {
+      val: "2",
+      suit: "c",
+      vis: "0",
+      deckval: 2,
+    },
+  ];
+  tableJson.hand0 = [
+    {
+      val: "13",
+      suit: "s",
+      vis: "0",
+      deckval: 52,
+    },
+    {
+      val: "12",
+      suit: "s",
+      vis: "0",
+      deckval: 51,
+    },
+    {
+      val: "8",
+      suit: "s",
+      vis: "0",
+      deckval: 47,
+    },
+    {
+      val: "7",
+      suit: "h",
+      vis: "0",
+      deckval: 33,
+    },
+    {
+      val: "5",
+      suit: "h",
+      vis: "0",
+      deckval: 31,
+    },
+    {
+      val: "4",
+      suit: "h",
+      vis: "0",
+      deckval: 30,
+    },
+    {
+      val: "14",
+      suit: "d",
+      vis: "0",
+      deckval: 27,
+    },
+    {
+      val: "13",
+      suit: "d",
+      vis: "0",
+      deckval: 26,
+    },
+    {
+      val: "9",
+      suit: "d",
+      vis: "0",
+      deckval: 22,
+    },
+    {
+      val: "3",
+      suit: "d",
+      vis: "0",
+      deckval: 16,
+    },
+    {
+      val: "2",
+      suit: "d",
+      vis: "0",
+      deckval: 15,
+    },
+    {
+      val: "9",
+      suit: "c",
+      vis: "0",
+      deckval: 9,
+    },
+    {
+      val: "3",
+      suit: "c",
+      vis: "0",
+      deckval: 3,
+    },
+  ];
+  */
+
+  /*  tableJson.hand0 = [
+    {
+      val: 12,
+      suit: "s",
+      vis: 0,
+      deckval: 51,
+    },
+    {
+      val: 7,
+      suit: "s",
+      vis: 0,
+      deckval: 46,
+    },
+    {
+      val: 6,
+      suit: "s",
+      vis: 0,
+      deckval: 45,
+    },
+    {
+      val: 14,
+      suit: "h",
+      vis: 0,
+      deckval: 40,
+    },
+    {
+      val: 11,
+      suit: "h",
+      vis: 0,
+      deckval: 37,
+    },
+    {
+      val: 10,
+      suit: "h",
+      vis: 0,
+      deckval: 36,
+    },
+    {
+      val: 3,
+      suit: "h",
+      vis: 0,
+      deckval: 29,
+    },
+    {
+      val: 14,
+      suit: "d",
+      vis: 0,
+      deckval: 27,
+    },
+    {
+      val: 9,
+      suit: "d",
+      vis: 0,
+      deckval: 22,
+    },
+    {
+      val: 3,
+      suit: "d",
+      vis: 0,
+      deckval: 16,
+    },
+    {
+      val: 13,
+      suit: "c",
+      vis: 0,
+      deckval: 13,
+    },
+    {
+      val: 12,
+      suit: "c",
+      vis: 0,
+      deckval: 12,
+    },
+    {
+      val: 9,
+      suit: "c",
+      vis: 0,
+      deckval: 9,
+    },
+  ];
+  tableJson.hand1 = [
+    {
+      val: 14,
+      suit: "s",
+      vis: 0,
+      deckval: 53,
+    },
+    {
+      val: 11,
+      suit: "s",
+      vis: 0,
+      deckval: 50,
+    },
+    {
+      val: 5,
+      suit: "s",
+      vis: 0,
+      deckval: 44,
+    },
+    {
+      val: 3,
+      suit: "s",
+      vis: 0,
+      deckval: 42,
+    },
+    {
+      val: 8,
+      suit: "h",
+      vis: 0,
+      deckval: 34,
+    },
+    {
+      val: 7,
+      suit: "h",
+      vis: 0,
+      deckval: 33,
+    },
+    {
+      val: 5,
+      suit: "h",
+      vis: 0,
+      deckval: 31,
+    },
+    {
+      val: 4,
+      suit: "h",
+      vis: 0,
+      deckval: 30,
+    },
+    {
+      val: 2,
+      suit: "h",
+      vis: 0,
+      deckval: 28,
+    },
+    {
+      val: 11,
+      suit: "d",
+      vis: 0,
+      deckval: 24,
+    },
+    {
+      val: 2,
+      suit: "d",
+      vis: 0,
+      deckval: 15,
+    },
+    {
+      val: 6,
+      suit: "c",
+      vis: 0,
+      deckval: 6,
+    },
+    {
+      val: 2,
+      suit: "c",
+      vis: 0,
+      deckval: 2,
+    },
+  ];
+  tableJson.hand2 = [
+    {
+      val: 8,
+      suit: "s",
+      vis: 0,
+      deckval: 47,
+    },
+    {
+      val: 4,
+      suit: "s",
+      vis: 0,
+      deckval: 43,
+    },
+    {
+      val: 13,
+      suit: "h",
+      vis: 0,
+      deckval: 39,
+    },
+    {
+      val: 12,
+      suit: "h",
+      vis: 0,
+      deckval: 38,
+    },
+    {
+      val: 9,
+      suit: "h",
+      vis: 0,
+      deckval: 35,
+    },
+    {
+      val: 6,
+      suit: "h",
+      vis: 0,
+      deckval: 32,
+    },
+    {
+      val: 13,
+      suit: "d",
+      vis: 0,
+      deckval: 26,
+    },
+    {
+      val: 7,
+      suit: "d",
+      vis: 0,
+      deckval: 20,
+    },
+    {
+      val: 6,
+      suit: "d",
+      vis: 0,
+      deckval: 19,
+    },
+    {
+      val: 4,
+      suit: "d",
+      vis: 0,
+      deckval: 17,
+    },
+    {
+      val: 14,
+      suit: "c",
+      vis: 0,
+      deckval: 14,
+    },
+    {
+      val: 10,
+      suit: "c",
+      vis: 0,
+      deckval: 10,
+    },
+    {
+      val: 7,
+      suit: "c",
+      vis: 0,
+      deckval: 7,
+    },
+  ];
+  tableJson.hand3 = [
+    {
+      val: 13,
+      suit: "s",
+      vis: 0,
+      deckval: 52,
+    },
+    {
+      val: 10,
+      suit: "s",
+      vis: 0,
+      deckval: 49,
+    },
+    {
+      val: 9,
+      suit: "s",
+      vis: 0,
+      deckval: 48,
+    },
+    {
+      val: 2,
+      suit: "s",
+      vis: 0,
+      deckval: 41,
+    },
+    {
+      val: 12,
+      suit: "d",
+      vis: 0,
+      deckval: 25,
+    },
+    {
+      val: 10,
+      suit: "d",
+      vis: 0,
+      deckval: 23,
+    },
+    {
+      val: 8,
+      suit: "d",
+      vis: 0,
+      deckval: 21,
+    },
+    {
+      val: 5,
+      suit: "d",
+      vis: 0,
+      deckval: 18,
+    },
+    {
+      val: 11,
+      suit: "c",
+      vis: 0,
+      deckval: 11,
+    },
+    {
+      val: 8,
+      suit: "c",
+      vis: 0,
+      deckval: 8,
+    },
+    {
+      val: 5,
+      suit: "c",
+      vis: 0,
+      deckval: 5,
+    },
+    {
+      val: 4,
+      suit: "c",
+      vis: 0,
+      deckval: 4,
+    },
+    {
+      val: 3,
+      suit: "c",
+      vis: 0,
+      deckval: 3,
+    },
+  ];
+*/
+  //END STATIC HAND
+
   gameState = tableJson;
 
   gameState.vul = vulArray[Math.floor(Math.random() * 3)];

@@ -26,37 +26,37 @@ const BiddingAiTester = ({ sendData }) => {
     console.clear();
     bidMatched = false;
     bidAttemptCount = 0;
-    resetAndDealGame();
-    displayHands();
 
     do {
+      resetAndDealGame();
+      displayHands();
       bid();
+      //executeBids(1, aoc1Bids);
+      //executeBids(2, ar1Bids);
       bidAttemptCount++;
+      console.log(bidAttemptCount);
     } while (
       !bidMatched &&
-      bidAttemptCount < 100 &&
+      bidAttemptCount < 10 &&
       game.gameState.currentBid === undefined
+      //game.gameState.r1Bid === undefined
     );
+    //console.log("oc1 Bid: ", game.gameState.ocBid);
+
+    //console.log("r1 Bid:: ", game.gameState.r1Bid);
+
     //console.log("BID COUNT: " + bidAttemptCount);
   }
 
   function bid() {
     executeBids(0, ao1Bids);
-    //console.log("ao1: ", ao1Bids);
-    //console.log("ar1: ", ao1Bids);
-    //console.log("aoc1: ", aoc1Bids);
-    executeBids(1, aoc1Bids);
-    executeBids(2, ar1Bids);
-    //executeBids(2, aopcBids);
-    //executeBids(2, ar1Bids);
-    //executeBids(1, aoc1Bids);
   }
 
   function executeBids(handNum, potentialBids) {
     //console.log("HandNum: ", handNum);
-    //console.log("PPP: ", potentialBids);
     for (let bid of potentialBids) {
-      // call the json function to return possible bids
+      //console.log("BID: ", bid);
+      // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
       var possibleBids = bid.func(game.gameState[`hand${handNum}`]);
       //console.log("Possible Bids: ", bid, possibleBids);
       doBid(bid.name, possibleBids, handNum);
@@ -64,14 +64,16 @@ const BiddingAiTester = ({ sendData }) => {
   }
 
   function doBid(bidName, possibleBids, handNum) {
+    //console.log("BIDNAME: ", bidName, possibleBids.length, handNum);
     if (possibleBids.length > 0) {
-      //console.log("All Possible Bids: ", possibleBids);
+      // remove any bids from the array that are less than the current bid
       possibleBids = removeTooLowBids(possibleBids);
-      //console.log("Valid possible Bids: ", possibleBids);
+      //sort the possible bids so highest is at array index zero
       possibleBids.sort((a, b) => b - a);
       // choose the highest ranked bid
       switch (possibleBids[0].bidder) {
         case "r1":
+          //if bid is r1 (Responder 1) set r1 bid and current bid
           game.gameState.r1Bid = possibleBids[0].r1Bid;
           game.gameState.currentBid = possibleBids[0].r1Bid;
           console.log("r1Bid: ", game.gameState.currentBid);
@@ -165,7 +167,7 @@ const BiddingAiTester = ({ sendData }) => {
             ))}
           </div>
           <div id="middle">
-            <div id="hand3">
+            <div id="hand1">
               {game.gameState.hand3.map((card, index) => (
                 <Card
                   key={index}
@@ -589,7 +591,7 @@ const BiddingAiTester = ({ sendData }) => {
                 <br />
               </div>
             </div>
-            <div id="hand1">
+            <div id="hand3">
               {game.gameState.hand1.map((card, index) => (
                 <Card
                   key={index}
