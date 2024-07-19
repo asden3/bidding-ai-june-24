@@ -211,7 +211,7 @@ export function deal() {
     }
   }
 
-  tableJson.hand0 = [
+  /*  tableJson.hand0 = [
     {
       val: 10,
       suit: "s",
@@ -531,6 +531,7 @@ export function deal() {
       deckval: 3,
     },
   ];
+  */
 
   tableJson["hand0"] = sortJSON(tableJson["hand0"], "deckval", "321"); // 123 or 321
   tableJson["hand1"] = sortJSON(tableJson["hand1"], "deckval", "321"); // 123 or 321

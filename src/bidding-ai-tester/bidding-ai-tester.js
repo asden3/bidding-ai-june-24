@@ -36,7 +36,7 @@ const BiddingAiTester = ({ sendData }) => {
     do {
       resetAndDealGame();
       displayHands();
-      bid();
+      executeBids(0, ao1Bids);
       executeBids(1, aoc1Bids);
       executeBids(2, ar1Bids);
       executeBids(0, ao2Bids);
@@ -45,35 +45,41 @@ const BiddingAiTester = ({ sendData }) => {
       console.log(bidAttemptCount);
     } while (
       !bidMatched &&
-      bidAttemptCount < 1 &&
+      bidAttemptCount < 100 &&
       game.gameState.currentBid === undefined
-      //game.gameState.r1Bid === undefined
     );
-    //console.log("oc1 Bid: ", game.gameState.ocBid);
-
-    //console.log("r1 Bid:: ", game.gameState.r1Bid);
-
     //console.log("BID COUNT: " + bidAttemptCount);
-  }
-
-  function bid() {
-    executeBids(0, ao1Bids);
   }
 
   function executeBids(handNum, potentialBids) {
     //console.log("HandNum: ", handNum);
     for (let bid of potentialBids) {
-      //console.log("BID: ", bid);
-      // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
-      var possibleBids = bid.func(
-        game.gameState[`hand${handNum}`],
-        game.gameState.o1Bid,
-        game.gameState.r1Bid,
-        game.gameState.o2Bid,
-        game.gameState.r2Bid
-      );
-      //console.log("Possible Bids: ", bid, possibleBids);
-      doBid(bid.name, possibleBids, handNum);
+      var possibleBids;
+      if (bid.name === "ar2_suitPreference") {
+        // suitPreference needs recoding
+        /*
+        var possibleBids = bid.func(
+          game.gameState,
+          handNum,
+          game.gameState.o1Bid,
+          game.gameState.r1Bid,
+          game.gameState.o2Bid
+        );
+        */
+        //console.log("Possible Bids: ", bid, possibleBids);
+        //doBid(bid.name, possibleBids, handNum);
+      } else {
+        // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
+        var possibleBids = bid.func(
+          game.gameState[`hand${handNum}`],
+          game.gameState.o1Bid,
+          game.gameState.r1Bid,
+          game.gameState.o2Bid,
+          game.gameState.r2Bid
+        );
+
+        doBid(bid.name, possibleBids, handNum);
+      }
     }
   }
 
@@ -143,7 +149,7 @@ const BiddingAiTester = ({ sendData }) => {
 
   function displayStats(bid, handNum) {
     let bidResults = `<b>BIDS</b><br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${game.gameState.oc1Bid}<br \>Responder: ${game.gameState.r1Bid}  <br \>Opener 2: ${game.gameState.o2Bid}<br\>Responder 2: ${game.gameState.r2Bid}<br\><br\>`;
-    /*
+
     for (let i = 0; i < 4; i++) {
       bidResults += `<br \><br \><b>HAND ${i}</b><br \>HCP: ${
         game.gameState[`hand${handNum}`].HCP
@@ -155,7 +161,7 @@ const BiddingAiTester = ({ sendData }) => {
         game.gameState[`hand${i}`].opStrength
       }<br /> HCPinEverySuit: ${game.gameState[`hand${i}`].hcpInEverySuit}`;
     }
-*/
+
     setBidResult(bidResults);
     /*
       `<b>BIDS</b><br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${

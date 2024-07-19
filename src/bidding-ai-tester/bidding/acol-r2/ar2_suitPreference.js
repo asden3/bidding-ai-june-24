@@ -1,18 +1,14 @@
-import * as fn from "./../../functions";
+import * as fn from "../../functions";
 
-export default function (gameState, o1Bid, r1Bid, o2Bid) {
+export default function (gameState, handNum, o1Bid, r1Bid, o2Bid) {
   console.log("WARNING: Preferences only currently works with hands 0 and 2.");
   if (o2Bid != undefined) {
+    // if NT then skip
     if (o1Bid.charAt(1) != "n" && o2Bid.charAt(1) != "n") {
-      // if NT then skip
-      console.log("o2!!!!");
-      console.log(o2Bid);
       var rebidPreference = [{}];
-      rebidPreference[0].r2Bid = "pass";
+      rebidPreference[0].r2Bid = "pass"; // Fix typo: change "Pass" to "pass"
       var opener = gameState["hand0"];
       var responder = gameState["hand2"];
-      console.log("o1Bid");
-      console.log(o1Bid);
       var o1Suit = o1Bid.charAt(1);
       var o2Suit = o2Bid.charAt(1);
 
@@ -27,18 +23,10 @@ export default function (gameState, o1Bid, r1Bid, o2Bid) {
       }
 
       //var r2Suit = responder;
-      //console.table(gameState['hand0']);
-      //console.log("LONGEST SUIT and o1");
-      //console.log(fn.getLongestSuit(gameState['hand2']));
-      //console.log(o1Suit);
       if (responder.reStrength === "min") {
-        console.log("MIN!!!");
-
         var o1SuitCount = fn.suitCount(opener, o1Suit);
         var o2SuitCount = fn.suitCount(opener, o2Suit);
-        console.log("o1 o2 SuitCount");
-        console.log(o1SuitCount);
-        console.log(o2SuitCount);
+
         if (o1Bid.charAt(1) === o2Bid.charAt(1)) {
           // if o1 and o2 are same suit
           rebidPreference[0].r2Bid = "pass";
@@ -50,7 +38,7 @@ export default function (gameState, o1Bid, r1Bid, o2Bid) {
         } else if (longerSuit === o1Suit) {
           rebidPreference[0].r2Bid = o1Bid;
         } else {
-          rebidPreference[0].r2Bid = "Pass";
+          rebidPreference[0].r2Bid = "pass";
         }
 
         //var o1SuitCount = suitCount(opener, o1Suit);
