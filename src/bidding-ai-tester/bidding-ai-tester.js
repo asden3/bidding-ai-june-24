@@ -40,7 +40,7 @@ const BiddingAiTester = ({ sendData }) => {
       executeBids(1, aoc1Bids);
       executeBids(2, ar1Bids);
       executeBids(0, ao2Bids);
-      //executeBids(2, ar2Bids);
+      executeBids(2, ar2Bids);
       bidAttemptCount++;
       console.log(bidAttemptCount);
     } while (
@@ -51,88 +51,100 @@ const BiddingAiTester = ({ sendData }) => {
     //console.log("BID COUNT: " + bidAttemptCount);
   }
 
-  function executeBids(handNum, potentialBids) {
+  function executeBids(handNum, biddingOptions) {
     //console.log("HandNum: ", handNum);
-    for (let bid of potentialBids) {
-      var possibleBids;
+    for (let bid of biddingOptions) {
+      var potentialBids;
+      //console.log("BID NAME: ", bid.name);
       if (bid.name === "ar2_suitPreference") {
         // suitPreference needs recoding
-        /*
-        var possibleBids = bid.func(
+        /*var potentialBids = bid.func(
           game.gameState,
           handNum,
-          game.gameState.o1Bid,
-          game.gameState.r1Bid,
-          game.gameState.o2Bid
-        );
-        */
-        //console.log("Possible Bids: ", bid, possibleBids);
-        //doBid(bid.name, possibleBids, handNum);
-      } else {
-        // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
-        var possibleBids = bid.func(
-          game.gameState[`hand${handNum}`],
           game.gameState.o1Bid,
           game.gameState.r1Bid,
           game.gameState.o2Bid,
           game.gameState.r2Bid
         );
 
-        doBid(bid.name, possibleBids, handNum);
+        //console.log("Possible Bids: ", bid, potentialBids);
+        doBid(bid.name, potentialBids, handNum);
+        */
+      } else {
+        // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
+        var potentialBids = bid.func(
+          game.gameState[`hand${handNum}`],
+          game.gameState.o1Bid,
+          game.gameState.r1Bid,
+          game.gameState.o2Bid,
+          game.gameState.r2Bid
+        );
+        //console.log("BIDDER: ", potentialBids);
+
+        doBid(bid.name, potentialBids, handNum);
       }
     }
   }
 
-  function doBid(bidName, possibleBids, handNum) {
-    //console.log("BIDNAME: ", bidName, possibleBids.length, handNum);
-    if (possibleBids.length > 0) {
+  function doBid(bidName, potentialBids, handNum) {
+    if (potentialBids.length > 0) {
+      console.log("BIDNAME: ", bidName, potentialBids.length, handNum);
+      console.log("BIDDER B4: ", potentialBids);
       // remove any bids from the array that are less than the current bid
-      possibleBids = removeTooLowBids(possibleBids);
+      potentialBids = removeTooLowBids(potentialBids);
       //sort the possible bids so highest is at array index zero
-      possibleBids.sort((a, b) => b - a);
+      potentialBids.sort((a, b) => b - a);
       // choose the highest ranked bid
-      switch (possibleBids[0].bidder) {
-        case "r1":
-          //if bid is r1 (Responder 1) set r1 bid and current bid
-          game.gameState.r1Bid = possibleBids[0].r1Bid;
-          game.gameState.currentBid = possibleBids[0].r1Bid;
-          displayStats(possibleBids[0].r1Bid, handNum);
-          break;
-        case "r2":
-          game.gameState.r2Bid = possibleBids[0].r2Bid;
-          game.gameState.currentBid = possibleBids[0].r2Bid;
-          displayStats(possibleBids[0].r2Bid, handNum);
-          break;
-        case "o1":
-          if (possibleBids[0].o1bid === undefined) {
-            game.gameState.o1Bid = possibleBids[0].o1Bid;
-            game.gameState.currentBid = possibleBids[0].o1Bid;
+      //console.log("BIDDER: ", potentialBids);
+      if (potentialBids[0] && typeof potentialBids[0].bidder !== "undefined") {
+        switch (potentialBids[0].bidder) {
+          case "r1":
+            //if bid is r1 (Responder 1) set r1 bid and current bid
+            game.gameState.r1Bid = potentialBids[0].r1Bid;
+            game.gameState.currentBid = potentialBids[0].r1Bid;
+            displayStats(game.gameState.r1Bid, handNum);
+            break;
+          case "r2":
+            game.gameState.r2Bid = potentialBids[0].r2Bid;
+            game.gameState.currentBid = potentialBids[0].r2Bid;
+            displayStats(game.gameState.r2Bid, handNum);
+            break;
+          case "o1":
+            //if (potentialBids[0].o1bid === undefined) {
+            // BUG? not sure this if is necessary
+            game.gameState.o1Bid = potentialBids[0].o1Bid;
+            game.gameState.currentBid = potentialBids[0].o1Bid;
             console.log("o1Bid: ", game.gameState.currentBid);
-            displayStats(possibleBids[0].o1Bid, handNum);
-          }
-          break;
-        case "oc1":
-          if (possibleBids[0].ocbid === undefined) {
-            game.gameState.ocBid = possibleBids[0].ocBid;
-            game.gameState.currentBid = possibleBids[0].ocBid;
-            console.log("ocBid: ", game.gameState.currentBid);
-            displayStats(possibleBids[0].ocBid, handNum);
-          }
-          break;
-        case "o2":
-          if (possibleBids[0].o2bid === undefined) {
-            game.gameState.o2Bid = possibleBids[0].o2Bid;
-            game.gameState.currentBid = possibleBids[0].o2Bid;
-            displayStats(possibleBids[0].o2Bid, handNum);
-          }
-          break;
-        case "o3":
-          game.gameState.o3Bid = possibleBids[0].o3Bid;
-          game.gameState.currentBid = possibleBids[0].o3Bid;
-          displayStats(possibleBids[0].o3Bid, handNum);
-          break;
-        default:
-          break;
+            displayStats(game.gameState.o1Bid, handNum);
+            //}
+            break;
+          case "oc1":
+            //if (potentialBids[0].ocbid === undefined) {
+            // BUG? not sure this if is necessary
+            game.gameState.oc1Bid = potentialBids[0].ocBid;
+            game.gameState.currentBid = potentialBids[0].ocBid;
+            console.log("oc1Bid: ", game.gameState.currentBid);
+            displayStats(game.gameState.oc1Bid, handNum);
+            //}
+            break;
+          case "o2":
+            //if (potentialBids[0].o2bid === undefined) {
+            // BUG? not sure this if is necessary
+            game.gameState.o2Bid = potentialBids[0].o2Bid;
+            game.gameState.currentBid = potentialBids[0].o2Bid;
+            displayStats(game.gameState.o2Bid, handNum);
+            //}
+            break;
+          case "o3":
+            game.gameState.o3Bid = potentialBids[0].o3Bid;
+            game.gameState.currentBid = potentialBids[0].o3Bid;
+            displayStats(game.gameState.o3Bid, handNum);
+            break;
+          default:
+            break;
+        }
+      } else {
+        console.log("PASS NO BID");
       }
       console.log(
         "Bids: ",
@@ -142,7 +154,7 @@ const BiddingAiTester = ({ sendData }) => {
         game.gameState.o2Bid
       );
     }
-    //console.log(possibleBids[0].bidder);
+    //console.log(potentialBids[0].bidder);
     //console.log(game.gameState);
     //console.log("Current Bid", game.gameState.currentBid);
   }

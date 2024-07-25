@@ -6,7 +6,7 @@ export default function (gameState, handNum, o1Bid, r1Bid, o2Bid) {
     // if NT then skip
     if (o1Bid.charAt(1) != "n" && o2Bid.charAt(1) != "n") {
       var rebidPreference = [{}];
-      rebidPreference[0].r2Bid = "pass"; // Fix typo: change "Pass" to "pass"
+      rebidPreference[0].r2Bid = ""; // "" == "pass" // Fix typo: change "Pass" to "pass"
       var opener = gameState["hand0"];
       var responder = gameState["hand2"];
       var o1Suit = o1Bid.charAt(1);
@@ -29,7 +29,7 @@ export default function (gameState, handNum, o1Bid, r1Bid, o2Bid) {
 
         if (o1Bid.charAt(1) === o2Bid.charAt(1)) {
           // if o1 and o2 are same suit
-          rebidPreference[0].r2Bid = "pass";
+          rebidPreference[0].r2Bid = ""; //"pass"
         } else if (
           fn.suitCount(gameState["hand2"], o1Suit) ===
           fn.suitCount(gameState["hand2"], o2Suit)
@@ -38,7 +38,7 @@ export default function (gameState, handNum, o1Bid, r1Bid, o2Bid) {
         } else if (longerSuit === o1Suit) {
           rebidPreference[0].r2Bid = o1Bid;
         } else {
-          rebidPreference[0].r2Bid = "pass";
+          rebidPreference[0].r2Bid = ""; //"pass"
         }
 
         //var o1SuitCount = suitCount(opener, o1Suit);
