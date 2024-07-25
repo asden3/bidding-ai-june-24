@@ -75,6 +75,7 @@ const BiddingAiTester = ({ sendData }) => {
         var potentialBids = bid.func(
           game.gameState[`hand${handNum}`],
           game.gameState.o1Bid,
+          game.gameState.oc1Bid,
           game.gameState.r1Bid,
           game.gameState.o2Bid,
           game.gameState.r2Bid
@@ -121,8 +122,8 @@ const BiddingAiTester = ({ sendData }) => {
           case "oc1":
             //if (potentialBids[0].ocbid === undefined) {
             // BUG? not sure this if is necessary
-            game.gameState.oc1Bid = potentialBids[0].ocBid;
-            game.gameState.currentBid = potentialBids[0].ocBid;
+            game.gameState.oc1Bid = potentialBids[0].oc1Bid;
+            game.gameState.currentBid = potentialBids[0].oc1Bid;
             console.log("oc1Bid: ", game.gameState.currentBid);
             displayStats(game.gameState.oc1Bid, handNum);
             //}

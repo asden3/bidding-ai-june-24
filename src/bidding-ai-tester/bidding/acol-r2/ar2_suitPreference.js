@@ -1,6 +1,6 @@
 import * as fn from "../../functions";
 
-export default function (gameState, handNum, o1Bid, r1Bid, o2Bid) {
+export default function (gameState, handNum, o1Bid, oc1Bid, r1Bid, o2Bid) {
   console.log("WARNING: Preferences only currently works with hands 0 and 2.");
   if (o2Bid != undefined) {
     // if NT then skip

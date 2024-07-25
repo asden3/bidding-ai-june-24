@@ -15,7 +15,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -32,7 +32,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -49,7 +49,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -66,7 +66,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -83,7 +83,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -100,7 +100,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 6,
-      o1Bid: "2c",
+      oc1Bid: "2c",
     },
     {
       bidder: "oc1",
@@ -117,7 +117,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 11,
-      o1Bid: "3c",
+      oc1Bid: "3c",
     },
     {
       bidder: "oc1",
@@ -134,7 +134,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 11,
-      o1Bid: "3c",
+      oc1Bid: "3c",
     },
     {
       bidder: "oc1",
@@ -151,7 +151,7 @@ export default function (hand) {
       minNumC: 7,
       maxNumC: 7,
       o1Index: 11,
-      o1Bid: "3c",
+      oc1Bid: "3c",
     },
     {
       bidder: "oc1",
@@ -168,7 +168,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 2,
-      o1Bid: "1d",
+      oc1Bid: "1d",
     },
     {
       bidder: "oc1",
@@ -185,7 +185,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 2,
-      o1Bid: "1d",
+      oc1Bid: "1d",
     },
     {
       bidder: "oc1",
@@ -202,7 +202,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 2,
-      o1Bid: "1d",
+      oc1Bid: "1d",
     },
     {
       bidder: "oc1",
@@ -219,7 +219,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 7,
-      o1Bid: "2d",
+      oc1Bid: "2d",
     },
     {
       bidder: "oc1",
@@ -236,7 +236,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 7,
-      o1Bid: "2d",
+      oc1Bid: "2d",
     },
     {
       bidder: "oc1",
@@ -253,7 +253,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 7,
-      o1Bid: "2d",
+      oc1Bid: "2d",
     },
     {
       bidder: "oc1",
@@ -270,7 +270,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 12,
-      o1Bid: "3d",
+      oc1Bid: "3d",
     },
     {
       bidder: "oc1",
@@ -287,7 +287,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 12,
-      o1Bid: "3d",
+      oc1Bid: "3d",
     },
     {
       bidder: "oc1",
@@ -304,7 +304,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 12,
-      o1Bid: "3d",
+      oc1Bid: "3d",
     },
     {
       bidder: "oc1",
@@ -321,7 +321,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 3,
-      o1Bid: "1h",
+      oc1Bid: "1h",
     },
     {
       bidder: "oc1",
@@ -338,7 +338,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 3,
-      o1Bid: "1h",
+      oc1Bid: "1h",
     },
     {
       bidder: "oc1",
@@ -355,7 +355,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 3,
-      o1Bid: "1h",
+      oc1Bid: "1h",
     },
     {
       bidder: "oc1",
@@ -372,7 +372,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 8,
-      o1Bid: "2h",
+      oc1Bid: "2h",
     },
     {
       bidder: "oc1",
@@ -389,7 +389,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 8,
-      o1Bid: "2h",
+      oc1Bid: "2h",
     },
     {
       bidder: "oc1",
@@ -406,7 +406,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 8,
-      o1Bid: "2h",
+      oc1Bid: "2h",
     },
     {
       bidder: "oc1",
@@ -423,7 +423,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 13,
-      o1Bid: "3h",
+      oc1Bid: "3h",
     },
     {
       bidder: "oc1",
@@ -440,7 +440,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 13,
-      o1Bid: "3h",
+      oc1Bid: "3h",
     },
     {
       bidder: "oc1",
@@ -457,7 +457,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 13,
-      o1Bid: "3h",
+      oc1Bid: "3h",
     },
     {
       bidder: "oc1",
@@ -474,7 +474,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 4,
-      o1Bid: "1s",
+      oc1Bid: "1s",
     },
     {
       bidder: "oc1",
@@ -491,7 +491,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 4,
-      o1Bid: "1s",
+      oc1Bid: "1s",
     },
     {
       bidder: "oc1",
@@ -508,7 +508,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 4,
-      o1Bid: "1s",
+      oc1Bid: "1s",
     },
     {
       bidder: "oc1",
@@ -525,7 +525,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 9,
-      o1Bid: "2s",
+      oc1Bid: "2s",
     },
     {
       bidder: "oc1",
@@ -542,7 +542,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 9,
-      o1Bid: "2s",
+      oc1Bid: "2s",
     },
     {
       bidder: "oc1",
@@ -559,7 +559,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 9,
-      o1Bid: "2s",
+      oc1Bid: "2s",
     },
     {
       bidder: "oc1",
@@ -576,7 +576,7 @@ export default function (hand) {
       minNumC: 6,
       maxNumC: 6,
       o1Index: 14,
-      o1Bid: "3s",
+      oc1Bid: "3s",
     },
     {
       bidder: "oc1",
@@ -593,7 +593,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 14,
-      o1Bid: "3s",
+      oc1Bid: "3s",
     },
     {
       bidder: "oc1",
@@ -610,7 +610,7 @@ export default function (hand) {
       minNumC: "",
       maxNumC: "",
       o1Index: 14,
-      o1Bid: "3s",
+      oc1Bid: "3s",
     },
   ];
   var rebid_ao1_75 = ao1_75.filter(

@@ -18,7 +18,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -38,7 +38,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -58,7 +58,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -78,7 +78,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -98,7 +98,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -118,7 +118,7 @@ export default function (hand) {
       maxNumC: 5,
       forcingBid: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
   ];
   var rebid_aoc1_unusual2NT = oc1_unusual2NT.filter(

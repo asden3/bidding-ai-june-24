@@ -1,4 +1,4 @@
-export default function (hand, o1Bid) {
+export default function (hand, o1Bid, oc1Bid) {
   //console.log("R1 44", hand, o1Bid);
   var fourCard4Card = [
     {

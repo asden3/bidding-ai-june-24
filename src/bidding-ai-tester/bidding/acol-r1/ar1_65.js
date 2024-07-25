@@ -1,4 +1,4 @@
-export default function (hand, o1Bid) {
+export default function (hand, o1Bid, oc1Bid) {
   var sixCard5Card = [
     {
       bidder: "r1",

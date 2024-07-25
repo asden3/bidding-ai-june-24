@@ -16,7 +16,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 5,
-      ocBid: "1nt",
+      oc1Bid: "1nt",
     },
     {
       bidder: "oc1",
@@ -34,7 +34,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 5,
-      ocBid: "1nt",
+      oc1Bid: "1nt",
     },
     {
       bidder: "oc1",
@@ -52,7 +52,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -70,7 +70,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 10,
-      ocBid: "2nt",
+      oc1Bid: "2nt",
     },
     {
       bidder: "oc1",
@@ -88,7 +88,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 15,
-      ocBid: "3nt",
+      oc1Bid: "3nt",
     },
     {
       bidder: "oc1",
@@ -106,7 +106,7 @@ export default function (hand) {
       maxNumC: 4,
       honorInEverySuit: "TRUE",
       ocIndex: 15,
-      ocBid: "3nt",
+      oc1Bid: "3nt",
     },
   ];
   var rebid_aoc1_noTrump = oc1_noTrump.filter(
