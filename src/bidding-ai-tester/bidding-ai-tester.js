@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import React, { useState } from "react";
 import * as game from "./core";
 import {
   ao1Bids,
@@ -8,22 +9,15 @@ import {
   ar2Bids,
 } from "./bidding/biddingStrategies";
 import { resetAndDealGame, removeTooLowBids } from "./bidding/biddingUtils";
-import * as bidIndex from "./bidIndex";
+//import * as bidIndex from "./bidIndex";
 import Card from "../components/Card";
-// import reactDOM
-import ReactDOM from "react-dom";
 
 const BiddingAiTester = ({ sendData }) => {
   let [bidResult, setBidResult] = useState("");
-
-  //useEffect(() => {
-  // Any side effects or updates can be performed here when bidResult changes
-  //console.log("Bid result updated: ", bidResult);
-  //}, [bidResult]); // The effect runs whenever bidResult changes
+  let [bidArray, setBidArray] = useState([]);
 
   let bidMatched = false;
   let bidAttemptCount = 0;
-  //console.clear();
   resetAndDealGame();
 
   function handleClick(value) {}
@@ -72,7 +66,7 @@ const BiddingAiTester = ({ sendData }) => {
         */
       } else {
         // call the json function to return array of possible bids ****!!!! NEEDS EXTRA PARAMETER
-        var potentialBids = bid.func(
+        potentialBids = bid.func(
           game.gameState[`hand${handNum}`],
           game.gameState.o1Bid,
           game.gameState.oc1Bid,
@@ -176,25 +170,14 @@ const BiddingAiTester = ({ sendData }) => {
     }
 
     setBidResult(bidResults);
-    /*
-      `<b>BIDS</b><br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${
-        game.gameState.oc1Bid
-      }<br \>Responder: ${game.gameState.r1Bid}  <br \>Opener 2: ${
-        game.gameState.o2Bid
-      }<br\><br\><b>HAND NUMBER ${handNum} STATS</b><br \>Opener Bid: ${
-        game.gameState.o1Bid
-      }<br /> HCP: ${game.gameState[`hand${handNum}`].HCP}<br /> TotalPoints: ${
-        game.gameState[`hand${handNum}`].TPLong
-      }<br /> Balanced: ${
-        game.gameState[`hand${handNum}`].balanced
-      }<br /> reS: ${game.gameState[`hand${handNum}`].reStrength}<br /> opS: ${
-        game.gameState[`hand${handNum}`].opStrength
-      }<br /> HCPinEverySuit: ${
-        game.gameState[`hand${handNum}`].hcpInEverySuit
-      }<br \>Opener: ${game.gameState.o1Bid}<br \>OC: ${
-        game.gameState.oc1Bid
-      }<br \>Responder: ${game.gameState.r1Bid}  `
-    );*/
+    bidArray[0] = game.gameState.o1Bid ?? "P";
+    bidArray[1] = game.gameState.oc1Bid ?? "P";
+    bidArray[2] = game.gameState.r1Bid ?? "P";
+    bidArray[1] = game.gameState.ocp1Bid ?? "P";
+    bidArray[3] = game.gameState.o2Bid ?? "P";
+    bidArray[4] = game.gameState.oc2Bid ?? "P";
+    bidArray[5] = game.gameState.r2Bid ?? "P";
+    setBidArray(bidArray);
   }
 
   function displayHands() {
@@ -249,14 +232,14 @@ const BiddingAiTester = ({ sendData }) => {
                       <th>3</th>
                     </tr>
                     <tr>
-                      <td id="bid0"></td>
-                      <td id="bid1"></td>
-                      <td id="bid2"></td>
-                      <td id="bid3"></td>
+                      <td id="bid0">{bidArray[0]}</td>
+                      <td id="bid1">{bidArray[1]}</td>
+                      <td id="bid2">{bidArray[2]}</td>
+                      <td id="bid3">{bidArray[3]}</td>
                     </tr>
                     <tr>
-                      <td id="bid4"></td>
-                      <td id="bid5"></td>
+                      <td id="bid4">{bidArray[4]}</td>
+                      <td id="bid5">{bidArray[5]}</td>
                       <td id="bid6"></td>
                       <td id="bid7"></td>
                     </tr>
